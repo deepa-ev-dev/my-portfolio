@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from '../components/ThemeContext';
 
 const Header = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [activeLink, setActiveLink] = useState("");
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -49,9 +51,9 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 bg-gray-100 w-full p-4 z-10 shadow-md">
+    <header className={`fixed top-0 left-0 w-full p-4 z-10 shadow-md ${theme === 'light' ? 'header-light' : 'header-dark'}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl md:text-3xl font-bold text-[#50221d]">Deepa E V</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Deepa E V</h1>
         <div className="flex items-center">
           <ul className="hidden md:flex space-x-4">
             <li>
@@ -96,7 +98,7 @@ const Header = () => {
             onClick={toggleMobileMenu}
           >
             <svg
-              className="w-6 h-6 text-gray-600"
+              className="w-6 h-6"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -110,6 +112,12 @@ const Header = () => {
                 <path d="M4 6h16M4 12h16m-7 6h7"></path>
               )}
             </svg>
+          </button>
+          <button
+            onClick={toggleTheme}
+            className="ml-4 p-2 rounded-md focus:outline-none"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
           </button>
         </div>
         {isMobileMenuOpen && (

@@ -1,21 +1,26 @@
-import React from "react";
-import Header from "./components/Header";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from './components/ThemeContext';
+import Header from './components/Header';
+import About from './components/About';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 const App = () => {
+  const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <div>
+    <div className={`app ${theme}`}>
       <Header />
-      <main>
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
-      </main>
+      <About />
+      <Projects />
+      <Skills />
+      <Contact />
       <Footer />
     </div>
   );

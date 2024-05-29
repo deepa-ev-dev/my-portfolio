@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact } from "react-icons/fa";
 import { IoLogoPython } from "react-icons/io";
 import { SiDjango, SiGit, SiVisualstudiocode, SiWebpack } from "react-icons/si";
+import { ThemeContext } from "../components/ThemeContext";
 
 const Skills = () => {
+  const { theme } = useContext(ThemeContext);
+  const iconColor = theme === "dark" ? "text-white" : "text-[#50221d]";
   const iconSizeClass = "text-4xl md:text-6xl"; // Use Tailwind classes to adjust icon size
   const sectionTitleClass = "text-lg md:text-xl"; // Use Tailwind classes to adjust section title size
 
   return (
-    <section id="skills" className="p-8 md:p-20 bg-gray-100">
+    <section id="skills" className={`p-8 md:p-20 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}>
       <div className="container w-[80%] mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12 text-[#50221d]">Skills</h2>
+        <h2 className={`text-3xl font-bold text-center mb-12 ${iconColor}`}>Skills</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-2 text-center">
           {/* Section 1 */}
           <div className="py-4 md:py-0 md:px-4">

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import projectImage1 from "../images/project-image-1.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ThemeContext } from "../components/ThemeContext";
 
 const Projects = () => {
+  const { theme } = useContext(ThemeContext);
+
+  const buttonTextColor = theme === "dark" ? "text-black" : "text-white";
+  const iconColor = theme === "dark" ? "text-white" : "text-[#50221d]";
+  const buttonColor = theme === "dark" ? "bg-white" : "bg-[#50221d]";
+  const bgColor = theme === "dark" ? "bg-gray-800" : "bg-gray-100";
 
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -15,8 +22,8 @@ const Projects = () => {
           ...style,
           display: "block",
           background: "gray",
-          borderRadius: "50%", // Apply rounded border
-          transform: "rotate(0deg)" // Rotate arrow to point left
+          borderRadius: "50%",
+          transform: "rotate(0deg)"
         }}
         onClick={onClick}
       />
@@ -27,12 +34,13 @@ const Projects = () => {
     const { className, style, onClick } = props;
     return (
       <div
-        className={className} style={{
+        className={className}
+        style={{
           ...style,
           display: "block",
           background: "gray",
-          borderRadius: "50%", // Apply rounded border
-          transform: "rotate(0deg)" // Rotate arrow to point left
+          borderRadius: "50%",
+          transform: "rotate(0deg)"
         }}
         onClick={onClick}
       />
@@ -66,12 +74,12 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="p-8 md:p-20 bg-gray-100">
+    <section id="projects" className={`p-8 md:p-20 ${iconColor}`}>
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#50221d] text-center mb-8">Projects</h2>
+        <h2 className={`text-3xl md:text-4xl font-bold text-[#50221d] text-center mb-1 ${iconColor}`}>Projects</h2>
         <p className="text-lg text-gray-500 text-center mb-8">Built from scratch</p>
         <Slider {...settings}>
-          {projects.map((project) =>
+          {projects.map((project) => (
             <div key={project.title} className="px-4 md:px-0">
               <div className="flex flex-col md:flex-row items-center">
                 {/* Image on the right */}
@@ -84,11 +92,13 @@ const Projects = () => {
                 <div className={`w-full md:w-1/2 md:pr-8 text-center md:text-left ${window.innerWidth <= 768 ? 'md:text-center' : ''}`}>
                   <p className="font-bold text-xl md:text-2xl sm:text-md">{project.title}</p>
                   <p className="text-base md:text-lg mt-4 sm:text-sm">{project.description}</p>
-                  <button className="bg-[#50221d] p-2 text-white rounded-md mt-4"><a href={project.link} target="_blank" rel="noreferrer">Try it out! -&gt;</a></button>
+                  <button className={`bg-[#50221d] p-2 text-white rounded-md mt-4 ${buttonColor} ${buttonTextColor}`}>
+                    <a href={project.link} target="_blank" rel="noreferrer">Try it out! -&gt;</a>
+                  </button>
                 </div>
               </div>
             </div>
-          )}
+          ))}
         </Slider>
       </div>
     </section>
