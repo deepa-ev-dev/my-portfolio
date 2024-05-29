@@ -11,7 +11,6 @@ const Projects = () => {
   const buttonTextColor = theme === "dark" ? "text-black" : "text-white";
   const iconColor = theme === "dark" ? "text-white" : "text-[#50221d]";
   const buttonColor = theme === "dark" ? "bg-white" : "bg-[#50221d]";
-  const bgColor = theme === "dark" ? "bg-gray-800" : "bg-gray-100";
 
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
