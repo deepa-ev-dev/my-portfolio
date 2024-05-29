@@ -5,6 +5,7 @@ const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [activeLink, setActiveLink] = useState("");
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const textColor = theme === "dark" ? "bg-black" : "bg-white";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,7 @@ const Header = () => {
       const projectsSection = document.getElementById("projects");
       const skillsSection = document.getElementById("skills");
       const contactSection = document.getElementById("contact");
+     
 
       if (
         scrollPosition < projectsSection.offsetTop - 50 &&
@@ -121,7 +123,7 @@ const Header = () => {
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-gray-100 shadow-lg">
+          <div className={`md:hidden absolute top-full left-0 w-full shadow-lg ${textColor}`}>
             <ul className="flex flex-col space-y-4 p-4">
               <li>
                 <a
