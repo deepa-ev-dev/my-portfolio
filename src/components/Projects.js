@@ -1,42 +1,95 @@
 import React from "react";
 import projectImage1 from "../images/project-image-1.png";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Projects = () => {
+
+  const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          background: "gray",
+          borderRadius: "50%", // Apply rounded border
+          transform: "rotate(0deg)" // Rotate arrow to point left
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className} style={{
+          ...style,
+          display: "block",
+          background: "gray",
+          borderRadius: "50%", // Apply rounded border
+          transform: "rotate(0deg)" // Rotate arrow to point left
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+  };
+
+  const projects = [
+    {
+      image: projectImage1,
+      title: "Food Ordering App",
+      link: "https://deeps-food-ordering.netlify.app/",
+      technologies: ["React JS", "Redux", "Hooks", "Tailwind CSS"],
+      description: "Ordering made deliciously easy: explore a world of flavors at your fingertips with our food ordering app."
+    },
+    {
+      image: projectImage1,
+      title: "Youtube",
+      link: "https://deeps-food-ordering.netlify.app/",
+      technologies: ["React JS", "Redux", "Hooks", "Tailwind CSS"],
+      description: "Ordering made deliciously easy: explore a world of flavors at your fingertips with our food ordering app."
+    }
+  ];
+
   return (
-    <section id="projects" className="p-20 bg-gray-100">
+    <section id="projects" className="p-8 md:p-20 bg-gray-100">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
-        <div className="flex overflow-x-auto scrollbar-hide space-x-8">
-          {/* Project Carousel */}
-          <div className="w-full flex-shrink-0">
-            {/* Project Card */}
-            <div className="border rounded-lg overflow-hidden flex">
-              {/* Image on the left */}
-              <img src={projectImage1} alt="Project 1" className="w-1/3 object-cover" />
-              {/* Project details on the right */}
-              <div className="p-6 w-2/3">
-                <h3 className="text-2xl font-semibold mb-2">Food Ordering App</h3>
-                <a href="https://deeps-food-ordering.netlify.app/" target="_blank" rel="noopener noreferrer" className="block mb-4 text-blue-500 hover:underline">View Project</a>
-                <p className="text-gray-600 mb-4">Technology used : </p>
-                <ul className="list-disc list-inside text-gray-600">
-                  <li>React JS</li>
-                  <li>Redux</li>
-                  <li>Hooks</li>
-                  <li>Tailwind CSS</li>
-                  </ul>
-                <p className="text-gray-600 my-4">Project description:</p>
-                <ul className="list-disc list-inside text-gray-600">
-                  <li>Built a comprehensive Restaurant App from scratch using ReactJS, integrating real-time restaurant data from the Swiggy API.</li>
-                  <li>Implemented dynamic routing for seamless navigation between components, enhancing user experience.</li>
-                  <li>Developed features such as restaurant search, rating of restaurants and dishes, cart functionalities, and checkout total calculation.</li>
-                  <li>Utilized Redux for state management, leveraging hooks like useReducer and useContext for effective state handling.</li>
-                </ul>
-                
+        <h2 className="text-3xl md:text-4xl font-bold text-[#50221d] text-center mb-8">Projects</h2>
+        <p className="text-lg text-gray-500 text-center mb-8">Built from scratch</p>
+        <Slider {...settings}>
+          {projects.map((project) =>
+            <div key={project.title} className="px-4 md:px-0">
+              <div className="flex flex-col md:flex-row items-center">
+                {/* Image on the right */}
+                <div className="w-full md:w-1/2 mb-4 md:mb-0 flex justify-center">
+                  <div className="overflow-hidden w-full md:w-80">
+                    <img src={project.image} alt={project.title} className="object-cover w-full h-full" />
+                  </div>
+                </div>
+                {/* Summary on the left */}
+                <div className={`w-full md:w-1/2 md:pr-8 text-center md:text-left ${window.innerWidth <= 768 ? 'md:text-center' : ''}`}>
+                  <p className="font-bold text-xl md:text-2xl sm:text-md">{project.title}</p>
+                  <p className="text-base md:text-lg mt-4 sm:text-sm">{project.description}</p>
+                  <button className="bg-[#50221d] p-2 text-white rounded-md mt-4"><a href={project.link} target="_blank" rel="noreferrer">Try it out! -&gt;</a></button>
+                </div>
               </div>
             </div>
-            {/* Add more project cards as needed */}
-          </div>
-        </div>
+          )}
+        </Slider>
       </div>
     </section>
   );

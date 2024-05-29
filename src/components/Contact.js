@@ -1,46 +1,40 @@
 import React from "react";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
+  const iconStyle = {
+    fontSize: "2.5rem", // Adjust the size here for responsiveness
+    color: "#50221d" // Adjust the color here
+  };
+
   return (
-    <section id="contact" className="p-4 bg-gray-100">
-      <h2 className="text-2xl font-bold">Contact</h2>
-      <form className="mt-4">
-        <label htmlFor="name" className="block">
-          Name:
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="border p-2 w-full mb-4"
-          required
-        />
-
-        <label htmlFor="email" className="block">
-          Email:
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className="border p-2 w-full mb-4"
-          required
-        />
-
-        <label htmlFor="message" className="block">
-          Message:
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          className="border p-2 w-full mb-4"
-          required
-        ></textarea>
-
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Send
-        </button>
-      </form>
+    <section id="contact" className="p-8 md:p-20 bg-gray-100 text-center">
+      <div className="w-[90%] md:w-[80%] mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#50221d] mb-12">Contact</h2>
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-2">
+            <FaPhone style={iconStyle} />
+            <div className="text-center md:text-left">
+              <p className="font-semibold">Call Me</p>
+              <p>+91 9080702627</p>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-2">
+            <FaEnvelope style={iconStyle} />
+            <div className="text-center md:text-left">
+              <p className="font-semibold">Email</p>
+              <p>deepavenkataramanaiah@gmail.com</p>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-2">
+            <FaMapMarkerAlt style={iconStyle} />
+            <div className="text-center md:text-left">
+              <p className="font-semibold">Location</p>
+              <p>Chennai, Tamil Nadu</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
