@@ -48,7 +48,7 @@ const Projects = () => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
@@ -57,15 +57,9 @@ const Projects = () => {
 
   const projects = [
     {
+      id:1,
       image: projectImage1,
       title: "Food Ordering App",
-      link: "https://deeps-food-ordering.netlify.app/",
-      technologies: ["React JS", "Redux", "Hooks", "Tailwind CSS"],
-      description: "Ordering made deliciously easy: explore a world of flavors at your fingertips with our food ordering app."
-    },
-    {
-      image: projectImage1,
-      title: "Youtube",
       link: "https://deeps-food-ordering.netlify.app/",
       technologies: ["React JS", "Redux", "Hooks", "Tailwind CSS"],
       description: "Ordering made deliciously easy: explore a world of flavors at your fingertips with our food ordering app."
@@ -78,8 +72,8 @@ const Projects = () => {
         <h2 className={`text-3xl md:text-4xl font-bold text-[#50221d] text-center mb-1 ${iconColor}`}>Projects</h2>
         <p className="text-lg text-gray-500 text-center mb-8">Built from scratch</p>
         <Slider {...settings}>
-          {projects.map((project) => (
-            <div key={project.title} className="px-4 md:px-0">
+          {projects.map((project,index) => (
+            <div key={project.index} className="px-4 md:px-0">
               <div className="flex flex-col md:flex-row items-center">
                 {/* Image on the right */}
                 <div className="w-full md:w-1/2 mb-4 md:mb-0 flex justify-center">
